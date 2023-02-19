@@ -30,15 +30,20 @@ CREATE TABLE Players
     FOREIGN KEY (country) REFERENCES Teams
 );
 
-Coaches (country, cname, DOB, role)
+CREATE TABLE Coaches
 (
-    country   CHAR(20),
-    pname     CHAR(40),
+    country CHAR(20),
+    cname   CHAR(40) NOT NULL,
+    DOB     DATE     NOT NULL,
+    role    CHAR(20) NOT NULL,
+    PRIMARY KEY (country, cname),
+    FOREIGN KEY (country) REFERENCES Teams
+);
 
-    Country foreign key referencing Teams
-DOB NOT NULL
-role NOT NULL
+CREATE TABLE Referees
+(
 
+)
 Referees (rname, year_of_experience, country)
 	year_of_experience NOT NULL
 	country NOT NULL
