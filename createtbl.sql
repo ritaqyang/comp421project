@@ -12,7 +12,7 @@ CONNECT TO cs421;
 
 CREATE TABLE Teams
 (
-    country     CHAR(20),
+    country     CHAR(20) NOT NULL,
     association CHAR(40) NOT NULL,
     URL         CHAR(40) NOT NULL,
     group       INTEGER  NOT NULL,
@@ -41,12 +41,12 @@ CREATE TABLE Coaches
 );
 
 CREATE TABLE Referees
-	(rname VARCHAR(40) PRIMARY KEY,
+	(rname VARCHAR(40) NOT NULL PRIMARY KEY,
 	year_of_experience INT NOT NULL, 
 	country VARCHAR(60) NOT NULL);
 
 CREATE TABLE Stadiums
-	(sname VARCHAR(40) PRIMARY KEY,
+	(sname VARCHAR(40) NOT NULL PRIMARY KEY,
 	location VARCHAR(40) NOT NULL,
 	capacity INT NOT NULL);
 
@@ -93,11 +93,11 @@ CREATE TABLE Performs
 
 
 CREATE TABLE Customers
-	(email VARCHAR(30) PRIMARY KEY,
+	(email VARCHAR(30) NOT NULL PRIMARY KEY,
 	password VARCHAR(50) NOT NULL);
 
 CREATE TABLE Billing_addresses
-	(aid INT PRIMARY KEY,
+	(aid INT NOT NULL PRIMARY KEY,
 	address VARCHAR(100) NOT NULL,
 	city VARCHAR(30) NOT NULL,
 	province VARCHAR(30) NOT NULL,
@@ -107,7 +107,7 @@ CREATE TABLE Billing_addresses
 	name VARCHAR(30) NOT NULL);
 
 CREATE TABLE Stadium_addresses
-	(aid INT PRIMARY KEY,
+	(aid NOT NULL INT PRIMARY KEY,
 	address VARCHAR(100) NOT NULL,
 	city VARCHAR(30) NOT NULL,
 	province VARCHAR(30) NOT NULL,
@@ -117,21 +117,21 @@ CREATE TABLE Stadium_addresses
 	sname VARCHAR(30) NOT NULL);
 
 CREATE TABLE Games
-	(gname VARCHAR(30) PRIMARY KEY,
+	(gname VARCHAR(30) NOT NULL PRIMARY KEY,
 	date DATE NOT NULL,
 	time TIME NOT NULL,
 	aid INT NOT NULL,
 	FOREIGN KEY (aid) REFERENCES Stadium_addresses); 
 
 CREATE TABLE Credit_cards
-	(c_num INT PRIMARY KEY,
+	(c_num INT NOT NULL PRIMARY KEY,
 	cvv INT NOT NULL,
 	e_date DATE NOT NULL,
 	aid INT NOT NULL,
 	FOREIGN KEY (aid) REFERENCES Billing_addresses); 
 
 CREATE TABLE Tickets
-	(tid INT PRIMARY KEY,
+	(tid INT NOT NULL PRIMARY KEY,
 	section VARCHAR(1) NOT NULL,
 	row INT NOT NULL,
 	seat INT NOT NULL,
@@ -141,7 +141,7 @@ CREATE TABLE Tickets
 
 
 CREATE TABLE Sold_tickets
-	(tid INT PRIMARY KEY,
+	(tid INT NOT NULL PRIMARY KEY,
 	section VARCHAR(1) NOT NULL,
 	row INT NOT NULL,
 	seat INT NOT NULL,
@@ -159,7 +159,7 @@ CREATE TABLE Purchases
 	transaction_id INT NOT NULL,
 	t_date DATE NOT NULL,
 	t_time TIME NOT NULL,
-	PRIMARY KEY (tid, c_num, email)
+	PRIMARY KEY (tid, c_num, email),
 	FOREIGN KEY (email) REFERENCES Customers,
 	FOREIGN KEY (c_num) REFERENCES Credit_cards);
 
