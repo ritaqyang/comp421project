@@ -14,7 +14,7 @@ CREATE TABLE Teams
 (
     country     CHAR(20) NOT NULL,
     association CHAR(40) NOT NULL,
-    URL         CHAR(40) NOT NULL,
+    URL         CHAR(80) NOT NULL,
     group       CHAR(1)  NOT NULL,
     PRIMARY KEY (country)
 );
