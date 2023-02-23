@@ -10,16 +10,16 @@ CONNECT TO cs421;
 -- This is only an example of how you add INSERT statements to this file.
 --   You may remove it.
 
-/*INSERT INTO MYTEST01 (id, value) VALUES(4, 1300);
+-- INSERT INTO MYTEST01 (id, value) VALUES(4, 1300);
 -- A more complex syntax that saves you typing effort.
-INSERT INTO MYTEST01 (id, value) VALUES
- (7, 5144)
-,(3, 73423)
-,(6, -1222)
-;
-*/
+-- INSERT INTO MYTEST01 (id, value) VALUES
+-- (7, 5144)
+-- ,(3, 73423)
+-- ,(6, -1222)
+-- ;
+-- */
 
-/* PART 1 */
+-- /* PART 1 */
 
 INSERT INTO Teams VALUES
 ('Argentina' , 'Argentine Football Association' , 'https://www.afa.com.ar/' , 'C'),
