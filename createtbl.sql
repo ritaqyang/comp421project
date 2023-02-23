@@ -110,7 +110,7 @@ CREATE TABLE Billing_addresses
 	province VARCHAR(30) NOT NULL,
 	country VARCHAR(30) NOT NULL,
 	postal_code VARCHAR(6) NOT NULL,
-	phone INT NOT NULL,
+	phone VARCHAR(20) NOT NULL,
 	name VARCHAR(30) NOT NULL);
 
 
