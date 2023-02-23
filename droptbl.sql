@@ -9,7 +9,6 @@ CONNECT TO cs421;
 
 -- This is only an example of how you add drop table ddls to this file.
 --   You may remove it.
-DROP TABLE MYTEST01;
 
 DROP TABLE Teams;
 
