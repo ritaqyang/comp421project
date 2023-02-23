@@ -22,7 +22,7 @@ CREATE TABLE Teams
 CREATE TABLE Players
 (
     country   CHAR(20) NOT NULL,
-    shirt_num INTEGER,
+    shirt_num INTEGER NOT NULL,
     pname     CHAR(40) NOT NULL,
     position  CHAR(20) NOT NULL,
     DOB       DATE     NOT NULL,
@@ -118,7 +118,7 @@ CREATE TABLE Stadium_addresses
 	phone INT NOT NULL,
 	sname VARCHAR(30) NOT NULL);
 
-CREATE TABLE Games
+CREATE TABLE Games_P2
 	(gname VARCHAR(30) NOT NULL PRIMARY KEY,
 	date DATE NOT NULL,
 	time TIME NOT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE Tickets
 	seat INT NOT NULL,
 	gname VARCHAR(30) NOT NULL,
 	listed_price INT NOT NULL,
-	FOREIGN KEY (gname) REFERENCES Games); 
+	FOREIGN KEY (gname) REFERENCES Games_P2); 
 
 
 CREATE TABLE Sold_tickets
@@ -151,7 +151,7 @@ CREATE TABLE Sold_tickets
 	listed_price INT NOT NULL,
 	sold_price INT NOT NULL,
 	sold_date DATE NOT NULL,
-	FOREIGN KEY (gname) REFERENCES Games);
+	FOREIGN KEY (gname) REFERENCES Games_P2);
 
 CREATE TABLE Purchases
 	(tid INT NOT NULL,
