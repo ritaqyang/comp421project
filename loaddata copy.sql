@@ -66,7 +66,7 @@ INSERT INTO Players VALUES
   ('Brazil' , 9431 , 'Sande Bridge' , 'Right Midfielder' , '1992-01-23'),
   ('Portugal' , 74 , 'Test Test' , 'Center Midfielder' , '1990-10-04'),
   ('Portugal' , 80370 , 'Torin Lissandre' , 'Center Forward' , '1994-08-27'),
-  ('United States' , 8778 , 'Demeter O'Henecan' , 'Attacking Midfielder' , '2000-10-03'),
+  ('United States' , 8778 , 'Test Test' , 'Attacking Midfielder' , '2000-10-03'),
   ('Mexico' , 7649 , 'Addy Domingues' , 'Left Midfielder' , '1994-07-26'),
   ('Uruguay' , 5 , 'Alistair Scrafton' , 'Goalie' , '1992-03-22'),
   ('Brazil' , 21 , 'Nelli Shorten' , 'Right Fullback' , '1985-09-13'),
