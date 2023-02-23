@@ -41,9 +41,130 @@ CREATE TABLE Coaches
 );
 
 CREATE TABLE Referees
-(
+	(rname VARCHAR(40) PRIMARY KEY,
+	year_of_experience INT NOT NULL, 
+	country VARCHAR(60) NOT NULL);
 
-)
+CREATE TABLE Stadiums
+	(sname VARCHAR(40) PRIMARY KEY,
+	location VARCHAR(40) NOT NULL,
+	capacity INT NOT NULL);
+
+CREATE TABLE Games
+	(id INT PRIMARY KEY, /* this is an int right? - H */
+	date DATE NOT NULL,
+	time TIME NOT NULL, 
+	length TIME NOT NULL,
+	round INT NOT NULL, 
+	stadium VARCHAR(40) NOT NULL,
+	playing_country VARCHAR(60) NOT NULL,
+	opposing_country VARCHAR(60) NOT NULL,
+	FOREIGN KEY (stadium) REFERENCES Stadiums,
+	FOREIGN KEY (playing_country) REFERENCES Teams,
+	FOREIGN KEY (opposing_country) REFERENCES Teams);
+
+CREATE TABLE Goals 
+	(id INT,
+	occurrence INT, 
+	minute INT NOT NULL,
+	penalty VARCHAR(10) NOT NULL, 	
+	shirt_num INT,
+	country VARCHAR(60),
+	PRIMARY KEY (id, occurrence),
+	FOREIGN KEY (id) REFERENCES Games);
+
+CREATE TABLE Refs_game
+	(rname VARCHAR(40),
+	id INT,
+	role VARCHAR(40) NOT NULL,
+	FOREIGN KEY (rname) REFERENCES Referees,
+	FOREIGN KEY (id) REFERENCES Games); 
+
+CREATE TABLE Performs
+	(pname VARCHAR(50) NOT NULL,
+	id INT,
+	etime TIME NOT NULL,
+	ltime TIME NOT NULL,
+	position VARCHAR(50) NOT NULL,
+	Rcard INT NOT NULL,
+	Ycard INT NOT NULL,
+	FOREIGN KEY (pname) REFERENCES Players,
+	FOREIGN KEY (id) REFERENCES Games); 
+
+
+CREATE TABLE Customers
+	(email VARCHAR(30) PRIMARY KEY,
+	password VARCHAR(50) NOT NULL);
+
+CREATE TABLE Billing_addresses
+	(aid INT PRIMARY KEY,
+	address VARCHAR(100) NOT NULL,
+	city VARCHAR(30) NOT NULL,
+	province VARCHAR(30) NOT NULL,
+	country VARCHAR(30) NOT NULL,
+	postal_code VARCHAR(6) NOT NULL,
+	phone INT NOT NULL,
+	name VARCHAR(30) NOT NULL);
+
+CREATE TABLE Stadium_addresses
+	(aid INT PRIMARY KEY,
+	address VARCHAR(100) NOT NULL,
+	city VARCHAR(30) NOT NULL,
+	province VARCHAR(30) NOT NULL,
+	country VARCHAR(30) NOT NULL,
+	postal_code VARCHAR(6) NOT NULL,
+	phone INT NOT NULL,
+	sname VARCHAR(30) NOT NULL);
+
+CREATE TABLE Games
+	(gname VARCHAR(30) PRIMARY KEY,
+	date DATE NOT NULL,
+	time TIME NOT NULL,
+	aid INT NOT NULL,
+	FOREIGN KEY (aid) REFERENCES Stadium_addresses); 
+
+CREATE TABLE Credit_cards
+	(c_num INT PRIMARY KEY,
+	cvv INT NOT NULL,
+	e_date DATE NOT NULL,
+	aid INT NOT NULL,
+	FOREIGN KEY (aid) REFERENCES Billing_addresses); 
+
+CREATE TABLE Tickets
+	(tid INT PRIMARY KEY,
+	section VARCHAR(1) NOT NULL,
+	row INT NOT NULL,
+	seat INT NOT NULL,
+	gname VARCHAR(30) NOT NULL,
+	listed_price INT NOT NULL,
+	FOREIGN KEY (gname) REFERENCES Games); 
+
+
+CREATE TABLE Sold_tickets
+	(tid INT PRIMARY KEY,
+	section VARCHAR(1) NOT NULL,
+	row INT NOT NULL,
+	seat INT NOT NULL,
+	gname VARCHAR(30) NOT NULL,
+	listed_price INT NOT NULL,
+	sold_price INT NOT NULL,
+	sold_date DATE NOT NULL,
+	FOREIGN KEY (gname) REFERENCES Games);
+
+CREATE TABLE Purchases
+	(tid INT NOT NULL,
+	c_num INT NOT NULL,
+	email VARCHAR(30) NOT NULL,
+		gname VARCHAR(30),
+	transaction_id INT NOT NULL,
+	t_date DATE NOT NULL,
+	t_time TIME NOT NULL,
+	PRIMARY KEY (tid, c_num, email)
+	FOREIGN KEY (email) REFERENCES Customers,
+	FOREIGN KEY (c_num) REFERENCES Credit_cards);
+
+
+/*
 Referees (rname, year_of_experience, country)
 	year_of_experience NOT NULL
 	country NOT NULL
@@ -71,6 +192,7 @@ Refs_game (rname,id, role)
 	rname foreign key referencing Referees
 	id foreign key referencing Games
 role NOT NULL
+*/
 
 Performs(pname, id, etime, ltime, position, Rcard, Ycard)
 	pname foreign key referencing Players
