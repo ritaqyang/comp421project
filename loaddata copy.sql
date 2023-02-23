@@ -131,3 +131,25 @@ INSERT INTO Players VALUES
   ('Argentina' , 'Allis Berrycloth' , '1993-05-15' , 'head'),
   ('Portugal' , 'Nataniel Childs' , '1993-05-05' , 'assistant')
    ;
+
+INSERT INTO Referees VALUES
+  ('Clarey Nelm' , 1 , 'Brazil'),
+  ('Staci Chaplin' , 2 , 'Uruguay'),
+  ('Harli MacSkeagan' , 3 , 'Portugal'),
+  ('Brittany Radwell' , 4 , 'Spain'),
+  ('Cherie Shawyers' , 12 , 'Croatia'),
+  ('Malia Karpf' , 6 , 'Australia'),
+  ('Zaccaria Davidsohn' , 7 , 'Saudi Arabia'),
+  ('Forester Masdon' , 8 , 'Tunisia'),
+  ('Garv Pybus' , 9 , 'Poland'),
+  ('Elana Dimock' , 10 , 'France'),
+  ('Terza Nafziger' , 11 , 'Brazil'),
+  ('Lionel Coslett' , 23 , 'Mexico'),
+  ('Myrtia Pelman' , 13 , 'Portugal'),
+  ('Georgeta Morch' , 14 , 'Mexico'),
+  ('Karna Dienes' , 15 , 'Portugal'),
+  ('Hobie Briggdale' , 12 , 'Canada'),
+  ('Ebba Whichelow' , 17 , 'France'),
+  ('Shandra Rivallant' , 18 , 'Spain'),
+  ('Kirsteni Wilshaw' , 19 , 'Poland'),
+  ('Malena Stare' , 20 , 'Portugal');
