@@ -1,6 +1,5 @@
 
-Part 2: revised ER 
-ER 2
+
 Customers(email,password,pid, id)  
 	password NOT NULL
 aid NOT NULL referencing Billing_Addresses
