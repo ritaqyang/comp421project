@@ -94,6 +94,7 @@ CREATE TABLE Performs
 	FOREIGN KEY (country, shirt_num) REFERENCES Players,
 	FOREIGN KEY (id) REFERENCES Games); 
 
+/* part 2 */
 
 CREATE TABLE Customers
 	(email VARCHAR(30) NOT NULL PRIMARY KEY,
@@ -102,6 +103,7 @@ CREATE TABLE Customers
 CREATE TABLE Billing_addresses
 	(aid INT NOT NULL PRIMARY KEY,
 	address VARCHAR(100) NOT NULL,
+    address2 VARCHAR(100) NOT NULL,
 	city VARCHAR(30) NOT NULL,
 	province VARCHAR(30) NOT NULL,
 	country VARCHAR(30) NOT NULL,
@@ -116,7 +118,6 @@ CREATE TABLE Stadium_addresses
 	province VARCHAR(30) NOT NULL,
 	country VARCHAR(30) NOT NULL,
 	postal_code VARCHAR(6) NOT NULL,
-	phone INT NOT NULL,
 	sname VARCHAR(30) NOT NULL);
 
 CREATE TABLE Games_P2
