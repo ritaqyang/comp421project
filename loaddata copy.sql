@@ -109,7 +109,7 @@ INSERT INTO Players VALUES
   ('Canada' , 323 , 'Christine Sinclair' , 'Defending' , '1988-05-22')
    ;
 
- INSERT INTO Coaches VALUES
+INSERT INTO Coaches VALUES
   ('Poland' , 'Zeke De Moreno' , '1988-11-25' , 'head'),
   ('Brazil' , 'Lyman Cicullo' , '1987-03-06' , 'assistant'),
   ('Canada' , 'Joelly Richens' , '1982-06-06' , 'head'),
@@ -153,3 +153,15 @@ INSERT INTO Referees VALUES
   ('Shandra Rivallant' , 18 , 'Spain'),
   ('Kirsteni Wilshaw' , 19 , 'Poland'),
   ('Malena Stare' , 20 , 'Portugal');
+  
+INSERT INTO Stadiums VALUES
+  ('Molson Stadium' , 'Yanling' , 2149),
+  ('McConnell Arena' , 'Rawaglagah' , 16039),
+  ('Rutherford Park' , 'Erpeldange' , 8855),
+  ('Forbes Field' , 'Curahpacul Satu' , 61592),
+  ('Tomlinson Fieldhouse' , 'Dalong' , 14613),
+  ('Lower Field' , 'Ōno-hara' , 23451),
+  ('Leacock 132' , 'Caacupé' , 6492),
+  ('Mont Royal' , 'Xiaji' , 62421),
+  ('Bell Centre' , 'Vakhtan' , 70219),
+  ('McGill Gym' , 'Chengjiang' , 18555);
