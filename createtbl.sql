@@ -21,7 +21,7 @@ CREATE TABLE Teams
 
 CREATE TABLE Players
 (
-    country   CHAR(20),
+    country   CHAR(20) NOT NULL,
     shirt_num INTEGER,
     pname     CHAR(40) NOT NULL,
     position  CHAR(20) NOT NULL,
@@ -32,7 +32,7 @@ CREATE TABLE Players
 
 CREATE TABLE Coaches
 (
-    country CHAR(20),
+    country CHAR(20) NOT NULL,
     cname   CHAR(40) NOT NULL,
     DOB     DATE     NOT NULL,
     role    CHAR(20) NOT NULL,
@@ -51,7 +51,7 @@ CREATE TABLE Stadiums
 	capacity INT NOT NULL);
 
 CREATE TABLE Games
-	(id INT PRIMARY KEY, /* this is an int right? - H */
+	(id INT NOT NULL PRIMARY KEY, /* this is an int right? - H */
 	date DATE NOT NULL,
 	time TIME NOT NULL, 
 	length TIME NOT NULL,
@@ -64,8 +64,8 @@ CREATE TABLE Games
 	FOREIGN KEY (opposing_country) REFERENCES Teams);
 
 CREATE TABLE Goals 
-	(id INT,
-	occurrence INT, 
+	(id INT NOT NULL,
+	occurrence INT NOT NULL, 
 	minute INT NOT NULL,
 	penalty VARCHAR(10) NOT NULL, 	
 	shirt_num INT,
@@ -74,20 +74,22 @@ CREATE TABLE Goals
 	FOREIGN KEY (id) REFERENCES Games);
 
 CREATE TABLE Refs_game
-	(rname VARCHAR(40),
-	id INT,
+	(rname VARCHAR(40) NOT NULL,
+	id INT NOT NULL,
 	role VARCHAR(40) NOT NULL,
+	PRIMARY KEY (rname, id),
 	FOREIGN KEY (rname) REFERENCES Referees,
 	FOREIGN KEY (id) REFERENCES Games); 
 
 CREATE TABLE Performs
 	(pname VARCHAR(50) NOT NULL,
-	id INT,
+	id INT NOT NULL,
 	etime TIME NOT NULL,
 	ltime TIME NOT NULL,
 	position VARCHAR(50) NOT NULL,
 	Rcard INT NOT NULL,
 	Ycard INT NOT NULL,
+	PRIMARY KEY (pname, id),
 	FOREIGN KEY (pname) REFERENCES Players,
 	FOREIGN KEY (id) REFERENCES Games); 
 
@@ -107,7 +109,7 @@ CREATE TABLE Billing_addresses
 	name VARCHAR(30) NOT NULL);
 
 CREATE TABLE Stadium_addresses
-	(aid NOT NULL INT PRIMARY KEY,
+	(aid INT NOT NULL PRIMARY KEY,
 	address VARCHAR(100) NOT NULL,
 	city VARCHAR(30) NOT NULL,
 	province VARCHAR(30) NOT NULL,
@@ -155,7 +157,7 @@ CREATE TABLE Purchases
 	(tid INT NOT NULL,
 	c_num INT NOT NULL,
 	email VARCHAR(30) NOT NULL,
-		gname VARCHAR(30),
+	gname VARCHAR(30),
 	transaction_id INT NOT NULL,
 	t_date DATE NOT NULL,
 	t_time TIME NOT NULL,
