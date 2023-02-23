@@ -95,10 +95,12 @@ CREATE TABLE Performs
 	FOREIGN KEY (id) REFERENCES Games); 
 
 /* part 2 */
-
 CREATE TABLE Customers
-	(email VARCHAR(30) NOT NULL PRIMARY KEY,
-	password VARCHAR(50) NOT NULL);
+(
+    email VARCHAR(30) NOT NULL PRIMARY KEY,
+    aid INT REFERENCES Billing_addresses;
+    transaction_id INT REFERENCES Purchases;
+    password VARCHAR(50) NOT NULL);
 
 CREATE TABLE Billing_addresses
 	(aid INT NOT NULL PRIMARY KEY,
@@ -110,6 +112,7 @@ CREATE TABLE Billing_addresses
 	postal_code VARCHAR(6) NOT NULL,
 	phone INT NOT NULL,
 	name VARCHAR(30) NOT NULL);
+
 
 CREATE TABLE Stadium_addresses
 	(aid INT NOT NULL PRIMARY KEY,
@@ -166,44 +169,4 @@ CREATE TABLE Purchases
 	PRIMARY KEY (tid, c_num, email),
 	FOREIGN KEY (email) REFERENCES Customers,
 	FOREIGN KEY (c_num) REFERENCES Credit_cards);
-
-
-/*
-Referees (rname, year_of_experience, country)
-	year_of_experience NOT NULL
-	country NOT NULL
-
-Stadiums(sname, location, capacity)
-	location NOT NULL
-capacity NOT NULL
-
-Games(id, date, time, length, round, stadium, playing_country, opposing_country)
-	date NOT NULL
-	time NOT NULL
-length NOT NULL
-round NOT NULL
-stadium NOT NULL foreign key referencing stadiums(name)
-	playing_country NOT NULL foreign key referencing Teams(country)
-	opposing_country NOT NULL foreign key referencing Teams(country)
-
-Goals(id, occurrence, minute, penalty, shirt_num, country)
-	Id foreign key referencing Games
-	minute NOT NULL
-penalty NOT NULL
-	shirt_num, country NOT NULL foreign key referencing Players(shirt_num, country)
-
-Refs_game (rname,id, role)
-	rname foreign key referencing Referees
-	id foreign key referencing Games
-role NOT NULL
-*/
-
-Performs(pname, id, etime, ltime, position, Rcard, Ycard)
-	pname foreign key referencing Players
-	id foreign key referencing Games
-	etime NOT NULL
-	ltime NOT NULL
-position NOT NULL
-Rcard NOT NULL
-	Ycard NOT NULL
 

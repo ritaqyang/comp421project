@@ -2,25 +2,25 @@
 
 Customers(email,password,pid, id)  
 	password NOT NULL
-aid NOT NULL referencing Billing_Addresses
-	id NOT NULL referencing Purchases
+    aid referencing Billing_Addresses
+	id referencing Purchases
 
 Billing_Addresses(aid,address,city, province, country, postal_code, phone, name)
 	address NOT NULL
-City NOT NULL
-Province NOT NULL 
-Country NOT NULL 
-postal_code NOT NULL
-phone NOT NULL
-name NOT NULL
+    City NOT NULL
+    Province NOT NULL
+    Country NOT NULL
+    postal_code NOT NULL
+    phone NOT NULL
+    name NOT NULL
 
 Stadium_Addresses(aid,address,city, province, country, postal_code, sname)  
 	Address NOT NULL
-City NOT NULL
-Province NOT NULL 
-Country NOT NULL 
-postal_code NOT NULL
-sname NOT NULL
+    City NOT NULL
+    Province NOT NULL
+    Country NOT NULL
+    postal_code NOT NULL
+    sname NOT NULL
 
 Games(gname, date, time, aid)
 	date NOT NULL
@@ -33,16 +33,16 @@ Credit_cards(c_num, CVV, e_date, aid)
 	aid NOT NULL foreign key referencing Billing_Addresses
 
 Tickets(tid, section, row, seat, gname, listed_price)
-section NOT NULL
-row NOT NULL
-seat NOT NULL
+    section NOT NULL
+    row NOT NULL
+    seat NOT NULL
 	gname foreign key referencing Games
 	listed_price NOT NULL
 
 Sold_tickets(tid, section, row, seat, gname, listed_price, sold_price, sold_date) 
 	section NOT NULL
-row NOT NULL
-Seat NOT NULL
+    row NOT NULL
+    Seat NOT NULL
 	gname foreign key referencing Games
 	listed_price NOT NULL
 	sold_price NOT NULL
@@ -50,7 +50,7 @@ Seat NOT NULL
 	
 Purchases(tid, c_num, email, gname, transaction_id, t_date, t_time) 
 	tid foreign key referencing Sold_tickets
-c_num NOT NULL foreign key referencing Credit_cards
+    c_num NOT NULL foreign key referencing Credit_cards
 	email NOT NULL foreign key referencing Customers 
 	transaction_id NOT NULL 
 	t_date NOT NULL
