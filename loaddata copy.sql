@@ -52,7 +52,7 @@ INSERT INTO Teams VALUES
   ('Switzerland' , 'the Swiss Football Association.' , 'https://en.wikipedia.org/wiki/Switzerland_national_football_team' , 'G'),
   ('Tunisia' , 'منتخب تُونُس لِكُرَّةُ الْقَدَم' , 'https://en.wikipedia.org/wiki/Tunisia_national_football_team' , 'D'),
   ('Uruguay' , 'Uruguayan Football Association' , 'https://www.auf.org.uy/' , 'H'),
-  ('USA' , 'US Soccer' , 'https://www.ussoccer.com/' , 'B'),
+  ('United States' , 'US Soccer' , 'https://www.ussoccer.com/' , 'B'),
   ('Wales' , 'Wales' , 'https://en.wikipedia.org/wiki/Wales_national_football_team' , 'B')
   ;
   
