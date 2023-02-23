@@ -22,3 +22,6 @@ INSERT INTO Billing_addresses(aid, address, address2, city, province, country, p
 awk '
 {FS= ","}
 {OFS = ","; print "("$1,$2,$3,$4,$5,$6,$7,$8,$9"),"}' < billing20.csv >> loaddataP2.sql
+
+
+#

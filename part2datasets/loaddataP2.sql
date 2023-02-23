@@ -62,4 +62,7 @@ INSERT INTO Billing_addresses(aid, address, address2, city, province, country, p
 (4752361086,37929 Golf Course Parkway,Room 369,Lage,Viana do Castelo,PT,4960-160,950-349-5340,Gun Fullilove),
 (5335721189,237 Pond Street,Apt 848,Pexiligais,Lisboa,PT,2725-619,516-778-8690,Hana Kauschke),
 (0494673362,00 Waubesa Point,Apt 1886,Vilar do Pinheiro,Porto,PT,4485-824,229-100-3756,Valerie Tatersale),
-(7691429061,76875 Ridge Oak Park,PO Box 59620,Kungshamn,Västra Götaland,SE,456 42,737-549-5852,Tymothy Tourner),
+(7691429061,76875 Ridge Oak Park,PO Box 59620,Kungshamn,Västra Götaland,SE,456 42,737-549-5852,Tymothy Tourner);
+
+
+

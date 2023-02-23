@@ -98,9 +98,10 @@ CREATE TABLE Performs
 CREATE TABLE Customers
 (
     email VARCHAR(30) NOT NULL PRIMARY KEY,
+    password VARCHAR(50) NOT NULL,
     aid INT REFERENCES Billing_addresses;
     transaction_id INT REFERENCES Purchases;
-    password VARCHAR(50) NOT NULL);
+    );
 
 CREATE TABLE Billing_addresses
 	(aid INT NOT NULL PRIMARY KEY,
