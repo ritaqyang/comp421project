@@ -82,15 +82,16 @@ CREATE TABLE Refs_game
 	FOREIGN KEY (id) REFERENCES Games); 
 
 CREATE TABLE Performs
-	(pname VARCHAR(50) NOT NULL,
+	(country   CHAR(20) NOT NULL,
+    	shirt_num INTEGER NOT NULL,
 	id INT NOT NULL,
 	etime TIME NOT NULL,
 	ltime TIME NOT NULL,
 	position VARCHAR(50) NOT NULL,
 	Rcard INT NOT NULL,
 	Ycard INT NOT NULL,
-	PRIMARY KEY (pname, id),
-	FOREIGN KEY (pname) REFERENCES Players,
+	PRIMARY KEY (country, shirt_num, id),
+	FOREIGN KEY (country, shirt_num) REFERENCES Players,
 	FOREIGN KEY (id) REFERENCES Games); 
 
 
