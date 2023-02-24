@@ -37,11 +37,14 @@ CREATE TABLE Games_P2
  FOREIGN KEY (aid) REFERENCES Stadium_addresses);
 
 CREATE TABLE Credit_cards
-(c_num INT NOT NULL PRIMARY KEY,
- cvv INT NOT NULL,
- e_date DATE NOT NULL,
- aid INT NOT NULL,
- FOREIGN KEY (aid) REFERENCES Billing_addresses);
+(
+    c_num BIGINT NOT NULL PRIMARY KEY,
+    c_type VARCHAR(20) NOT NULL,
+    cvv INT NOT NULL,
+    expiration_dm VARCHAR(10) NOT NULL,
+    aid BIGINT NOT NULL,
+    carholder_name INT VARCHAR(30) NOT NULL,
+    FOREIGN KEY (aid) REFERENCES Billing_addresses);
 
 DROP TABLE Tickets;
 CREATE TABLE Tickets
