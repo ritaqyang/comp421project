@@ -1,2 +1,7 @@
+
+
+
 SELECT *
-FROM Billing_addresses;
+FROM Customers
+;
+

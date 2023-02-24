@@ -1,30 +1,8 @@
 
 CONNECT TO cs421;
-
-INSERT INTO Customers(email,password) VALUES
-
-('fbloore0@surveymonkey.com','OMBNyNSedFJ'),
-('tbucham5@shareasale.com','512oy996y'),
-('gheapea@yellowbook.com','1X8cBo'),
-('lcornessn@google.fr','Ci8FVZS'),
-('ifranciottoio@wsj.com','rn18DtVho'),
-('fjohnikin13@wp.com','CqWhKXONH1'),
-('jradborn1a@java.com','rHZ7HdImQl'),
-('kcomford1b@people.com.cn','PjqbXRG490X'),
-('sbattle1e@who.int','4Y42rwr2y'),
-('soven1m@usda.gov','urlyZoej'),
-('gguidone1p@cbsnews.com','egl8IKni'),
-('shatwell1w@slate.com','6Nq3n8I'),
-('ejorden22@i2i.jp','mkkANema5'),
-('iconnikie2h@odnoklassniki.ru','Jgn9Ms'),
-('apobjay2l@arizona.edu','r8cWSPsahn'),
-('gfullilove2v@yale.edu','RhHvMMcBC'),
-('hkauschke31@google.pl','kdBsX9MIwQw'),
-('vtatersale32@disqus.com','7bVaJt9F3hAw'),
-('ttourner37@edublogs.org','GIiFwvBMd');
-
 INSERT INTO Billing_addresses(aid, address, address2, city, province, country, postal_code, phone, name,email)
  VALUES
+
 (9661010730,'197 Kennedy Circle','Apt 668','Luleå','Norrbotten','SE','973 23','459-827-4364','Fredia Bloore','fbloore0@surveymonkey.com'),
 (6708192985,'15399 Muir Way','PO Box 51485','København','Region Hovedstaden','DK','1360','356-434-0754','Thadeus Bucham','tbucham5@shareasale.com'),
 (5688024577,'77 Meadow Valley Place','Suite 94','Loma Bonita','Mexico','MX','52740','324-920-5491','Gearalt Heape','gheapea@yellowbook.com'),
