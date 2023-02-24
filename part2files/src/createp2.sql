@@ -63,14 +63,14 @@ CREATE TABLE Sold_tickets
  sold_date DATE NOT NULL);
 
 
-
+DROP TABLE Purchases;
 CREATE TABLE Purchases
 (transaction_id VARCHAR(50) NOT NULL,
- tid INT NOT NULL,
- t_date DATE NOT NULL,
- t_time TIME NOT NULL,
- c_num INT NOT NULL,
- email VARCHAR(30) NOT NULL,
+ tid VARCHAR(100) NOT NULL,
+ t_date DATE,
+ t_time VARCHAR(30),
+ c_num BIGINT,
+ email VARCHAR(30),
  PRIMARY KEY (tid),
  FOREIGN KEY (tid) REFERENCES Sold_tickets,
  FOREIGN KEY (email) REFERENCES Customers,
