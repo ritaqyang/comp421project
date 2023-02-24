@@ -15,3 +15,4 @@ DROP TABLE Sold_tickets;
 DROP TABLE Purchases;
 
 DELETE FROM Billing_addresses;
+DELETE FROM Customers;
