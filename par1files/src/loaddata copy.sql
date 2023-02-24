@@ -106,7 +106,7 @@ INSERT INTO Players VALUES
   ('Canada' , 238 , 'Tess Zecchinii' , 'Left Fullback' , '1986-12-05'),
   ('Netherlands' , 31 , 'Berny Simmank' , 'Center Back' , '2000-07-13'),
   ('Brazil' , 8171 , 'Karoly Rentz' , 'Center Back' , '1982-06-04'),
-  ('Canada' , 323 , 'Christine Sinclair' , 'Defending' , '1988-05-22')
+  ('Canada' , 12 , 'Christine Sinclair' , 'Defending' , '1988-05-22')
    ;
 
 INSERT INTO Coaches VALUES
@@ -266,11 +266,11 @@ INSERT INTO Goals VALUES
   (28 , 3 , 2 , 'TRUE' , 69555, 'Poland'),
   (28 , 4 , 62 , 'FALSE' , 69555, 'Poland'),
   (29 , 1 , 70 , 'FALSE' , 238, 'Canada'),
-  (29 , 2 , 2 , 'FALSE' , 323, 'Canada'),
-  (29 , 3 , 76 , 'FALSE' , 323, 'Canada'),
+  (29 , 2 , 2 , 'FALSE' , 12, 'Canada'),
+  (29 , 3 , 76 , 'FALSE' , 12, 'Canada'),
   (29 , 4 , 20 , 'FALSE' , 238, 'Canada'),
   (30 , 1 , 7 , 'FALSE' , 30, 'Portugal'),
-  (30 , 2 , 48 , 'FALSE' , 323, 'Canada'),
+  (30 , 2 , 48 , 'FALSE' , 12, 'Canada'),
   (31 , 1 , 66 , 'FALSE' , 54286, 'Brazil'),
   (31 , 2 , 13 , 'FALSE' , 54286, 'Brazil'),
   (31 , 3 , 76 , 'FALSE' , 54286, 'Brazil'),
@@ -411,9 +411,9 @@ INSERT INTO Performs VALUES
   ('Brazil', 62, 28, '00:49:28', '00:54:33', 'Attacking Midfielder', 0, 4),
   ('Poland', 69555, 28, '00:08:38', '01:28:25', 'Defending', 0, 1),
   ('Poland', 3, 28, '00:03:40', '01:01:21', 'Center Forward', 0, 1),
-  ('Canada', 323, 29, '00:11:51', '00:44:23', 'Defending', 0, 1),
+  ('Canada', 12, 29, '00:11:51', '00:44:23', 'Defending', 0, 1),
   ('Canada', 238, 29, '01:03:06', '01:20:06', 'Left Fullback', 0, 0),
-  ('Canada', 323, 30, '00:07:47', '00:48:07', 'Defending', 0, 5),
+  ('Canada', 12, 30, '00:07:47', '00:48:07', 'Defending', 0, 5),
   ('Portugal', 30, 30, '00:03:23', '00:38:22', 'Center Back', 0, 0),
   ('Brazil', 54286, 31, '00:16:09', '00:56:20', 'Right Fullback', 0, 0),
   ('Brazil', 62, 31, '00:25:13', '01:03:42', 'Attacking Midfielder', 1, 2),
