@@ -62,16 +62,16 @@ CREATE TABLE Sold_tickets
  sold_price FLOAT NOT NULL,
  sold_date DATE NOT NULL);
 
+
+
 CREATE TABLE Purchases
-(tid INT NOT NULL,
- c_num INT NOT NULL,
- email VARCHAR(30) NOT NULL,
- gname VARCHAR(30),
- transaction_id VARCHAR(50) NOT NULL,
+(transaction_id VARCHAR(50) NOT NULL,
+ tid INT NOT NULL,
  t_date DATE NOT NULL,
  t_time TIME NOT NULL,
+ c_num INT NOT NULL,
+ email VARCHAR(30) NOT NULL,
  PRIMARY KEY (tid),
  FOREIGN KEY (tid) REFERENCES Sold_tickets,
  FOREIGN KEY (email) REFERENCES Customers,
  FOREIGN KEY (c_num) REFERENCES Credit_cards);
-
