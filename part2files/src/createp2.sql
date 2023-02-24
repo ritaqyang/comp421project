@@ -56,14 +56,8 @@ CREATE TABLE Tickets
 DROP TABLE Sold_tickets;
 CREATE TABLE Sold_tickets
 (tid VARCHAR(100) NOT NULL PRIMARY KEY,
- section INT NOT NULL,
- row INT NOT NULL,
- seat INT NOT NULL,
- listed_price FLOAT NOT NULL,
  sold_price FLOAT NOT NULL,
- sold_date DATE NOT NULL,
- gname VARCHAR(30) NOT NULL,
- FOREIGN KEY (gname) REFERENCES Games_P2);
+ sold_date DATE NOT NULL);
 
 CREATE TABLE Purchases
 (tid INT NOT NULL,
