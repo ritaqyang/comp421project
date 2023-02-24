@@ -1,11 +1,11 @@
 #!/bin/bash
 
 echo "
-INSERT INTO Sold_tickets(tid,sold_price,sold_date)
- VALUES" >> load_sold_tickets.sql
+INSERT INTO Sold_tickets(tid,sold_price)
+ VALUES" > load_sold_tickets.sql
 awk -v p="'" '
 {FS= ","}
-{OFS = ","; print "("p$1p,$6,p$7p"),"}' < sold_tickets.csv >> load_sold_tickets.sql
+{OFS = ","; print "("p$1p,$6"),"}' < sold_tickets.csv >> load_sold_tickets.sql
 
 <<comment
 echo "

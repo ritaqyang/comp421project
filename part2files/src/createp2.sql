@@ -61,8 +61,7 @@ CREATE TABLE Tickets
 DROP TABLE Sold_tickets;
 CREATE TABLE Sold_tickets
 (tid VARCHAR(100) NOT NULL PRIMARY KEY,
- sold_price FLOAT NOT NULL,
- sold_date DATE NOT NULL);
+ sold_price FLOAT NOT NULL);
 
 
 DROP TABLE Purchases;
