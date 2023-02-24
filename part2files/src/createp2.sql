@@ -36,15 +36,17 @@ CREATE TABLE Games_P2
  aid BIGINT NOT NULL,
  FOREIGN KEY (aid) REFERENCES Stadium_addresses);
 
+
+DROP TABLE Credit_cards;
 CREATE TABLE Credit_cards
 (
     c_num BIGINT NOT NULL PRIMARY KEY,
     c_type VARCHAR(20) NOT NULL,
     cvv INT NOT NULL,
     expiration_dm VARCHAR(10) NOT NULL,
-    aid BIGINT NOT NULL,
-    carholder_name INT VARCHAR(30) NOT NULL,
-    FOREIGN KEY (aid) REFERENCES Billing_addresses);
+    carholder_name VARCHAR(30) NOT NULL,
+    email VARCHAR(30) NOT NULL,
+        FOREIGN KEY (email) REFERENCES Customers);
 
 DROP TABLE Tickets;
 CREATE TABLE Tickets
@@ -65,13 +67,15 @@ CREATE TABLE Sold_tickets
 
 DROP TABLE Purchases;
 CREATE TABLE Purchases
-(transaction_id VARCHAR(50) NOT NULL,
- tid VARCHAR(100) NOT NULL,
+(
+    tid VARCHAR(100) NOT NULL,
+    transaction_id VARCHAR(50) NOT NULL,
+
  t_date DATE,
  t_time VARCHAR(30),
- c_num BIGINT,
- email VARCHAR(30),
- PRIMARY KEY (tid),
+ c_num BIGINT NOT NULL,
+ email VARCHAR(30) NOT NULL,
+ PRIMARY KEY (tid,email,c_num),
  FOREIGN KEY (tid) REFERENCES Sold_tickets,
  FOREIGN KEY (email) REFERENCES Customers,
  FOREIGN KEY (c_num) REFERENCES Credit_cards);
