@@ -25,14 +25,12 @@ CREATE TABLE Stadium_addresses
  address VARCHAR(100) NOT NULL,
  city VARCHAR(100) NOT NULL,
  province VARCHAR(100) NOT NULL,
- country VARCHAR(5) NOT NULL,
- postal_code VARCHAR(30) NOT NULL,
- sname VARCHAR(30) NOT NULL);
+ country VARCHAR(100) NOT NULL);
 
+DROP TABLE Games_P2;
 
 CREATE TABLE Games_P2
-(country1 VARCHAR(10) NOT NULL PRIMARY KEY,
- country2 VARCHAR(10) NOT NULL PRIMARY KEY,
+(gname VARCHAR(30) NOT NULL PRIMARY KEY,
  date DATE NOT NULL,
  time VARCHAR (30) NOT NULL,
  aid BIGINT NOT NULL,
@@ -56,13 +54,13 @@ CREATE TABLE Tickets
 
 
 CREATE TABLE Sold_tickets
-(tid INT NOT NULL PRIMARY KEY,
+(tid VARCHAR(100) NOT NULL PRIMARY KEY,
  section VARCHAR(1) NOT NULL,
  row INT NOT NULL,
  seat INT NOT NULL,
  gname VARCHAR(30) NOT NULL,
- listed_price INT NOT NULL,
- sold_price INT NOT NULL,
+ listed_price FLOAT NOT NULL,
+ sold_price FLOAT NOT NULL,
  sold_date DATE NOT NULL,
  FOREIGN KEY (gname) REFERENCES Games_P2);
 
@@ -71,10 +69,11 @@ CREATE TABLE Purchases
  c_num INT NOT NULL,
  email VARCHAR(30) NOT NULL,
  gname VARCHAR(30),
- transaction_id INT NOT NULL,
+ transaction_id VARCHAR(50) NOT NULL,
  t_date DATE NOT NULL,
  t_time TIME NOT NULL,
- PRIMARY KEY (tid, c_num, email),
+ PRIMARY KEY (tid),
+ FOREIGN KEY (tid) REFERENCES Sold_tickets,
  FOREIGN KEY (email) REFERENCES Customers,
  FOREIGN KEY (c_num) REFERENCES Credit_cards);
 
