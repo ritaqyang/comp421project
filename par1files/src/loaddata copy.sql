@@ -106,7 +106,8 @@ INSERT INTO Players VALUES
   ('Canada' , 238 , 'Tess Zecchinii' , 'Left Fullback' , '1986-12-05'),
   ('Netherlands' , 31 , 'Berny Simmank' , 'Center Back' , '2000-07-13'),
   ('Brazil' , 8171 , 'Karoly Rentz' , 'Center Back' , '1982-06-04'),
-  ('Canada' , 12 , 'Christine Sinclair' , 'Defending' , '1988-05-22')
+  ('Canada' , 12 , 'Christine Sinclair' , 'Defending' , '1988-05-22'),
+  ('Qatar' , 99 , 'Test, this shouldnt be in 5b' , 'Defending' , '1988-05-22')
    ;
 
 INSERT INTO Coaches VALUES
