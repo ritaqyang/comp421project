@@ -2,8 +2,8 @@ CONNECT TO cs421;
 /* part 2 */
 CREATE TABLE Customers
 (
-    email VARCHAR(30) NOT NULL PRIMARY KEY,
-    password VARCHAR(30) NOT NULL
+    email VARCHAR(100) NOT NULL PRIMARY KEY,
+    password VARCHAR(40) NOT NULL
 );
 
 CREATE TABLE Billing_addresses
@@ -12,11 +12,11 @@ CREATE TABLE Billing_addresses
  address2 VARCHAR(100) NOT NULL,
  city VARCHAR(100) NOT NULL,
  province VARCHAR(100) NOT NULL,
- country VARCHAR(5) NOT NULL,
+ country VARCHAR(50) NOT NULL,
  postal_code VARCHAR(20) NOT NULL,
  phone VARCHAR(20) NOT NULL,
  name VARCHAR(30) NOT NULL,
-    email VARCHAR(30) NOT NULL,
+    email VARCHAR(100) NOT NULL,
 FOREIGN KEY (email) REFERENCES Customers);
 
 

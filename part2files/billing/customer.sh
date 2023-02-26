@@ -6,5 +6,5 @@ echo "INSERT INTO Customers(email,password) VALUES" > load_customer.sql
 
 awk  -v q="'" '
 {FS = ","}
-{OFS = ","; print "("q$10q,q$11q"),"}' < billing20.csv >> load_customer.sql
+{OFS = ","; print "("q$7q,q$8q"),"}' < original.csv >> load_customer.sql
 

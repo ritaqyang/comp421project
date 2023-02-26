@@ -1,0 +1,2 @@
+SELECT *
+FROM Purchases P;

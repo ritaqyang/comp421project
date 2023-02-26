@@ -4,8 +4,9 @@
 
  awk '
  BEGIN {FS=",";count=0}
- {if (count < 21 && $5 != "") {print $0; count+=1}}
- ' < billing_customer.csv > billing20.csv
+ {if (count < 101 && $24 != "" && $30 != "" && $32 != "") {print $0; count+=1}}
+ ' < alldata.csv > original.csv
+
 
 
 
