@@ -1,12 +1,28 @@
 
-INSERT INTO Credit_cards(c_num, c_type, cvv, expiration_dm, carholder_name,email)
+INSERT INTO Credit_cards(c_num, c_type, cvv, expiration_dm, aid, carholder_name)
  VALUES
 
-(374283141546218,'americanexpress',827,'2026-11','Fredia Bloore','fbloore0@surveymonkey.com'),
-(5534000727150587,'mastercard',679,'2027-08','Thadeus Bucham','tbucham5@shareasale.com'),
-(343380634494746,'americanexpress',291,'2027-01','Gearalt Heape','gheapea@yellowbook.com'),
-(4625736800046530,'visa',762,'2027-06','Lena Corness','lcornessn@google.fr'),
-(374288307065085,'americanexpress',180,'2025-05','Ikey Franciottoi','ifranciottoio@wsj.com');
-
-SELECT *
-FROM Billing_addresses;
+(30446052427720,'diners-club-carte-blanche',969,'2025-05-13',6746341062,'Dex Rizzello'),
+(3554742673063831,'jcb',231,'2027-06-30',5020774766,'Polly Matzke'),
+(374283000639039,'americanexpress',923,'2025-04-26',8942316700,'Rosalia Krale'),
+(6333581649292323953,'switch',442,'2025-05-02',2578562717,'Pammy Edscer'),
+(3578744754471554,'jcb',545,'2026-12-03',0472356569,'Timmy Wegner'),
+(675973226362366778,'switch',377,'2026-07-02',4729991699,'Sabra Chappelow'),
+(3573194402236089,'jcb',744,'2025-04-15',9691448483,'Trumann Broadley'),
+(3551737730775503,'jcb',368,'2026-08-31',4434474693,'Bekki Jelliman'),
+(3585257477272549,'jcb',116,'2025-06-20',7003214318,'Rubin Blatcher'),
+(5100174579141947,'mastercard',394,'2026-10-20',8840082042,'Sheffy Corradino'),
+(5492441330744251,'diners-club-us-ca',311,'2027-05-07',7861989852,'Reina Morrel'),
+(676246887209371633,'maestro',453,'2025-10-12',9668556313,'Lucina Cosslett'),
+(3564246181368714,'jcb',677,'2025-04-12',4549542861,'Augustina Corsar'),
+(4913246645065613,'visa-electron',539,'2027-07-23',2577713592,'Mona Blachford'),
+(3555235840230010,'jcb',903,'2027-01-21',6622219311,'Bartram Staning'),
+(6334852340138591,'solo',552,'2027-11-25',4097269747,'Ainslie Le Barr'),
+(3559960651268181,'jcb',693,'2027-05-28',9854835243,'Kate Yakolev'),
+(3572476708383405,'jcb',486,'2027-09-29',7805051763,'Cicely Belli'),
+(3542039714408314,'jcb',153,'2027-11-07',1347079793,'Ted Bourgaize'),
+(3567735156038671,'jcb',469,'2026-05-18',8714341344,'Alia Greetland'),
+(5450423967189273,'mastercard',879,'2026-03-26',0270074988,'Allis Beddoe'),
+(3563052316969892,'jcb',240,'2025-04-03',7843605274,'Melisse Revelle'),
+(5602229543029212067,'china-unionpay',236,'2027-03-23',4979184340,'Miles Rymour'),
+(5371507608331074,'mastercard',127,'2025-05-02',1402957750,'Priscilla Doolan');

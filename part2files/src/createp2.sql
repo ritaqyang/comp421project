@@ -22,15 +22,15 @@ FOREIGN KEY (email) REFERENCES Customers);
 
 CREATE TABLE Stadium_addresses
 (aid BIGINT NOT NULL PRIMARY KEY,
- address VARCHAR(100) NOT NULL,
- city VARCHAR(100) NOT NULL,
- province VARCHAR(100) NOT NULL,
- country VARCHAR(100) NOT NULL);
+ address VARCHAR(50) NOT NULL,
+ city VARCHAR(50) NOT NULL,
+ province VARCHAR(50) NOT NULL,
+ country VARCHAR(50) NOT NULL);
 
 DROP TABLE Games_P2;
 
 CREATE TABLE Games_P2
-(gname VARCHAR(30) NOT NULL PRIMARY KEY,
+(gname VARCHAR(50) NOT NULL PRIMARY KEY,
  date DATE NOT NULL,
  time VARCHAR (30) NOT NULL,
  aid BIGINT NOT NULL,
@@ -41,39 +41,40 @@ DROP TABLE Credit_cards;
 CREATE TABLE Credit_cards
 (
     c_num BIGINT NOT NULL PRIMARY KEY,
-    c_type VARCHAR(20) NOT NULL,
+    c_type VARCHAR(30) NOT NULL,
     cvv INT NOT NULL,
-    expiration_dm VARCHAR(10) NOT NULL,
+    expiration_dm DATE NOT NULL,
+    aid BIGINT NOT NULL,
     carholder_name VARCHAR(30) NOT NULL,
-    email VARCHAR(30) NOT NULL,
-        FOREIGN KEY (email) REFERENCES Customers);
+
+        FOREIGN KEY (aid) REFERENCES Billing_addresses);
 
 DROP TABLE Tickets;
 CREATE TABLE Tickets
-(tid VARCHAR(100) NOT NULL PRIMARY KEY,
+(tid BIGINT NOT NULL PRIMARY KEY,
  section INT NOT NULL,
  row INT NOT NULL,
  seat INT NOT NULL,
  listed_price FLOAT NOT NULL,
- gname VARCHAR(30) NOT NULL,
+ gname VARCHAR(50) NOT NULL,
  FOREIGN KEY (gname) REFERENCES Games_P2);
 
 DROP TABLE Sold_tickets;
 CREATE TABLE Sold_tickets
-(tid VARCHAR(100) NOT NULL PRIMARY KEY,
+(tid BIGINT NOT NULL PRIMARY KEY,
  sold_price FLOAT NOT NULL);
 
 
 DROP TABLE Purchases;
 CREATE TABLE Purchases
 (
-    tid VARCHAR(100) NOT NULL,
+    tid BIGINT NOT NULL,
     transaction_id VARCHAR(50) NOT NULL,
 
- t_date DATE,
- t_time VARCHAR(30),
+ transaction_date DATE,
+ transaction_time VARCHAR(30),
  c_num BIGINT NOT NULL,
- email VARCHAR(30) NOT NULL,
+ email VARCHAR(100) NOT NULL,
  PRIMARY KEY (tid,email,c_num),
  FOREIGN KEY (tid) REFERENCES Sold_tickets,
  FOREIGN KEY (email) REFERENCES Customers,

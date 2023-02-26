@@ -7,5 +7,5 @@ INSERT INTO Stadium_addresses(aid, address, city, province, country)
  VALUES" > load_stadiums.sql
 awk -v p="'" '
 {FS= ","}
-{OFS = ","; print "("$5,p$6p,p$7p,p$8p,p$9p"),"}' < game_stadiums20.csv >> load_stadiums.sql
+{OFS = ","; print "("$21,p$22p,p$23p,p$24p,p$25p"),"}' < ./../original.csv >> load_stadiums.sql
 

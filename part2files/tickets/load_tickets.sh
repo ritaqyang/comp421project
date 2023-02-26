@@ -4,4 +4,4 @@ INSERT INTO tickets(tid,section,row,seat,listed_price,gname)
  VALUES" > load_tickets.sql
 awk -v p="'" '
 {FS= ","}
-{OFS = ","; print "("p$1p,$2,$3,$4,$5,p$9p"),"}' < tickets50.csv >> load_tickets.sql
+{OFS = ","; print "("$1,$12,$13,$14,$15,p$17" vs."$18" "$19p"),"}' < ./../data.csv >> load_tickets.sql
