@@ -2,6 +2,7 @@ import java.sql.* ;
 
 class simpleJDBC
 {
+
     public static void main ( String [ ] args ) throws SQLException
     {
       // Unique table names.  Either the user supplies a unique identifier as a command line argument, or the program makes one up.

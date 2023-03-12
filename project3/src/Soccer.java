@@ -1,10 +1,15 @@
 import java.sql.* ;
 
+import static java.lang.System.exit;
+import java.util.Scanner;
+
 public class Soccer {
 
 
     public static void main ( String [ ] args ) throws SQLException
     {
+
+
         // Unique table names.  Either the user supplies a unique identifier as a command line argument, or the program makes one up.
         String tableName = "";
         int sqlCode=0;      // Variable to hold SQLCODE
@@ -24,8 +29,8 @@ public class Soccer {
         String url = "jdbc:db2://winter2023-comp421.cs.mcgill.ca:50000/cs421";
 
         //REMEMBER to remove your user id and password before submitting your code!!
-        String your_userid = null;
-        String your_password = null;
+        String your_userid = "cs421g229";
+        String your_password = "ilovesql1!";
         //AS AN ALTERNATIVE, you can just set your password in the shell environment in the Unix (as shown below) and read it from there.
         //$  export SOCSPASSWD=yoursocspasswd
         if(your_userid == null && (your_userid = System.getenv("SOCSUSER")) == null)
@@ -41,109 +46,126 @@ public class Soccer {
         Connection con = DriverManager.getConnection (url,your_userid,your_password) ;
         Statement statement = con.createStatement ( ) ;
 
-        // Creating a table
-        try
-        {
-            String createSQL = "CREATE TABLE " + tableName + " (id INTEGER, name VARCHAR (25)) ";
-            System.out.println (createSQL ) ;
-            statement.executeUpdate (createSQL ) ;
-            System.out.println ("DONE");
-        }
-        catch (SQLException e)
-        {
-            sqlCode = e.getErrorCode(); // Get SQLCODE
-            sqlState = e.getSQLState(); // Get SQLSTATE
 
-            // Your code to handle errors comes here;
-            // something more meaningful than a print would be good
-            System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
-            System.out.println(e);
-        }
 
-        // Inserting Data into the table
-        try
-        {
-            String insertSQL = "INSERT INTO " + tableName + " VALUES ( 1 , \'Vicki\' ) " ;
-            System.out.println ( insertSQL ) ;
-            statement.executeUpdate ( insertSQL ) ;
-            System.out.println ( "DONE" ) ;
 
-            insertSQL = "INSERT INTO " + tableName + " VALUES ( 2 , \'Vera\' ) " ;
-            System.out.println ( insertSQL ) ;
-            statement.executeUpdate ( insertSQL ) ;
-            System.out.println ( "DONE" ) ;
-            insertSQL = "INSERT INTO " + tableName + " VALUES ( 3 , \'Franca\' ) " ;
-            System.out.println ( insertSQL ) ;
-            statement.executeUpdate ( insertSQL ) ;
-            System.out.println ( "DONE" ) ;
 
-        }
-        catch (SQLException e)
-        {
-            sqlCode = e.getErrorCode(); // Get SQLCODE
-            sqlState = e.getSQLState(); // Get SQLSTATE
+        int userchoice = showMenu();
+        loop(userchoice,statement);
 
-            // Your code to handle errors comes here;
-            // something more meaningful than a print would be good
-            System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
-            System.out.println(e);
-        }
-
-        // Querying a table
-        try
-        {
-            String querySQL = "SELECT id, name from " + tableName + " WHERE NAME = \'Vicki\'";
-            System.out.println (querySQL) ;
-            java.sql.ResultSet rs = statement.executeQuery ( querySQL ) ;
-
-            while ( rs.next ( ) )
-            {
-                int id = rs.getInt ( 1 ) ;
-                String name = rs.getString (2);
-                System.out.println ("id:  " + id);
-                System.out.println ("name:  " + name);
-            }
-            System.out.println ("DONE");
-        }
-        catch (SQLException e)
-        {
-            sqlCode = e.getErrorCode(); // Get SQLCODE
-            sqlState = e.getSQLState(); // Get SQLSTATE
-
-            // Your code to handle errors comes here;
-            // something more meaningful than a print would be good
-            System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
-            System.out.println(e);
-        }
-
-        //Updating a table
-        try
-        {
-            String updateSQL = "UPDATE " + tableName + " SET NAME = \'Mimi\' WHERE id = 3";
-            System.out.println(updateSQL);
-            statement.executeUpdate(updateSQL);
-            System.out.println("DONE");
-
-            // Dropping a table
-            String dropSQL = "DROP TABLE " + tableName;
-            System.out.println ( dropSQL ) ;
-            statement.executeUpdate ( dropSQL ) ;
-            System.out.println ("DONE");
-        }
-        catch (SQLException e)
-        {
-            sqlCode = e.getErrorCode(); // Get SQLCODE
-            sqlState = e.getSQLState(); // Get SQLSTATE
-
-            // Your code to handle errors comes here;
-            // something more meaningful than a print would be good
-            System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
-            System.out.println(e);
-        }
 
         // Finally but importantly close the statement and connection
         statement.close ( ) ;
         con.close ( ) ;
     }
 
-}
+    public static void loop(int userchoice, Statement statement){
+        if (userchoice == 1) {
+            Q1(statement);
+            }
+
+    }
+    public static int showMenu() {
+
+        int option = 0;
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Soccer Main Menu:");
+        System.out.println("----------------------");
+        System.out.println("1.List information of matches of a country");
+        System.out.println("2.Insert initial Player information for a match ");
+        System.out.println("3.for you to design ");
+        System.out.println("4.Exit the application");
+
+        System.out.println("--------------");
+        System.out.println("Enter your choice:");
+        option = keyboard.nextInt();
+
+        return option;
+    }
+
+    public static void Q1(Statement statement){
+        String tableName = "";
+        int sqlCode=0;      // Variable to hold SQLCODE
+        String sqlState="00000";  // Variable to hold SQLSTATE
+
+
+
+        String country = chooseCountry();
+        country += "\'";
+        // Querying a table
+        try {
+            String querySQL = "SELECT playing_country, opposing_country, date, round from Games WHERE playing_country = \'";
+            querySQL += country;
+
+            //System.out.println (querySQL) ;
+            java.sql.ResultSet rs = statement.executeQuery(querySQL);
+
+            while (rs.next()) {
+                //int id = rs.getInt ( 1 ) ;
+                String country1 = rs.getString(1);
+                String country2 = rs.getString(2);
+                Date date = rs.getDate(3);
+                int r = rs.getInt(4);
+
+
+                System.out.println(country1 + "  " + country2 + date + getRound(r) + "goalsA " + "     goadsB" + "    tickets sales");
+
+            }
+        }
+        catch (SQLException e)
+        {
+            sqlCode = e.getErrorCode(); // Get SQLCODE
+            sqlState = e.getSQLState(); // Get SQLSTATE
+
+            // Your code to handle errors comes here;
+            // something more meaningful than a print would be good
+            System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
+            System.out.println(e);
+        }
+
+        String answer = returnfromQ1();
+        if (answer.equals("A")) { //find matches of another country
+            Q1(statement);
+        } else if (answer.equals("P")) { //go back to main menu
+            int choice = showMenu();
+            loop(choice, statement);
+        }
+    }
+    public static String chooseCountry(){
+        String country = "";
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Enter country:");
+        country += keyboard.next();
+        return country;
+
+    }
+
+    public static String returnfromQ1(){
+        String answer = "";
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Enter [A] to find matches of another country, [P] to go to the previous menu");
+        answer += keyboard.next();
+        return answer;
+    }
+
+    public static String getRound(int r){
+        String round = "";
+        if (r == 1){
+            round += "group-round";
+        }
+        else if (r ==2){
+            round += "round-of-16";
+        }
+        else if (r == 3) {
+            round += "quarterfinals";
+        }
+        else{
+            round += "finals";
+        }
+        return round;
+    }
+
+
+
+
+    }
