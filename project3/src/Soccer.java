@@ -50,8 +50,10 @@ public class Soccer {
 
 
 
-        int userchoice = showMenu();
-        loop(userchoice,statement);
+       // int userchoice = showMenu();
+        //loop(userchoice,statement);
+        String n = "Mexico";
+        System.out.println(getNumGoals(statement,n,1));
 
 
         // Finally but importantly close the statement and connection
@@ -83,32 +85,65 @@ public class Soccer {
         return option;
     }
 
-    public static void Q1(Statement statement){
-        String tableName = "";
+    public static int getNumGoals(Statement statement, String country, int gameID){
+
         int sqlCode=0;      // Variable to hold SQLCODE
         String sqlState="00000";  // Variable to hold SQLSTATE
 
-
-
-        String country = chooseCountry();
-        country += "\'";
-        // Querying a table
+        String c = "\'";
+        c += country;
+        c += "\'";
+        int numgoals = 0;
+        //query the num of goals for playing country
         try {
-            String querySQL = "SELECT playing_country, opposing_country, date, round from Games WHERE playing_country = \'";
-            querySQL += country;
 
-            //System.out.println (querySQL) ;
+            String query2 = "SELECT occurrence from Goals WHERE country = " + c + "AND id =" + gameID;
+            java.sql.ResultSet rs = statement.executeQuery(query2);
+
+            while (rs.next()){
+                numgoals +=1;
+                //int occurence = rs.getInt(1);
+                //System.out.println("adding one goal" + occurence);
+            }
+        }
+        catch (SQLException e1)
+        {
+            sqlCode = e1.getErrorCode(); // Get SQLCODE
+            sqlState = e1.getSQLState(); // Get SQLSTATE
+
+            // Your code to handle errors comes here;
+            // something more meaningful than a print would be good
+            System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
+            System.out.println(e1);
+        }
+        return numgoals;
+
+    }
+
+    public static void Q1(Statement statement){
+        int sqlCode=0;      // Variable to hold SQLCODE
+        String sqlState="00000";  // Variable to hold SQLSTATE
+
+        //get country from user input
+        String country = "\'";
+        country +=chooseCountry();
+        country += "\'";
+
+        try {
+            String querySQL = "SELECT playing_country, opposing_country, date,round,id from Games WHERE playing_country = " + country +"OR opposing_country = " + country;
+
             java.sql.ResultSet rs = statement.executeQuery(querySQL);
-
             while (rs.next()) {
-                //int id = rs.getInt ( 1 ) ;
                 String country1 = rs.getString(1);
                 String country2 = rs.getString(2);
                 Date date = rs.getDate(3);
-                int r = rs.getInt(4);
+                int round = rs.getInt(4);
+                int game_id = rs.getInt(5);
+                int numgoals_country1 = getNumGoals(statement,country1,game_id);
+                int numgoals_country2 = getNumGoals(statement,country2,game_id);
 
-
-                System.out.println(country1 + "  " + country2 + date + getRound(r) + "goalsA " + "     goadsB" + "    tickets sales");
+                System.out.println("game ids is " + game_id);
+                System.out.println(country1 + "  " + country2 + date + getRound(round) + numgoals_country1 + numgoals_country2 + "    tickets sales");
 
             }
         }
@@ -122,6 +157,9 @@ public class Soccer {
             System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
             System.out.println(e);
         }
+
+
+        //afterwards, ask if the user wants to keep asking / or return to the main menu after Question 1
 
         String answer = returnfromQ1();
         if (answer.equals("A")) { //find matches of another country
