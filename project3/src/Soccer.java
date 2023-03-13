@@ -51,15 +51,10 @@ public class Soccer {
 
 
 
-        //int userchoice = showMenu();
-        //loop(userchoice,statement);
+        int userchoice = showMenu();
+        loop(userchoice,statement);
 
-        //String test = "Portugal";
-        //System.out.println(getNumGoals(con,test,5));
-        // Finally but importantly close the statement and connection
-        //Q1();
 
-        System.out.println(getNumTickets(1));
         statement.close ( ) ;
         con.close ( ) ;
     }
@@ -166,7 +161,7 @@ public class Soccer {
                 int num_tickets = getNumTickets(game_id);
 
 
-                System.out.println("game ids is " + game_id);
+                //System.out.println("game ids is " + game_id);
                 System.out.println(country1 + "  " + country2 + "  " + date + "   " + getRound(round) + "   " + numgoals_country1 + "    " + numgoals_country2 + "     " + num_tickets);
 
             }
