@@ -51,8 +51,9 @@ public class Soccer {
 
 
 
-        int userchoice = showMenu();
-        loop(userchoice,statement);
+        //int userchoice = showMenu();
+        //loop(userchoice,statement);
+        Q2();
 
 
         statement.close ( ) ;
@@ -176,6 +177,8 @@ public class Soccer {
             System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
             System.out.println(e);
         }
+        statement.close ( ) ;
+        con.close ( ) ;
 
 
         //afterwards, ask if the user wants to keep asking / or return to the main menu after Question 1
@@ -188,8 +191,49 @@ public class Soccer {
             loop(choice, statement);
         }
 
+
+    }
+
+
+    public static void Q2() throws SQLException {
+
+        int sqlCode = 0;      // Variable to hold SQLCODE
+        String sqlState = "00000";  // Variable to hold SQLSTATE
+        String url = "jdbc:db2://winter2023-comp421.cs.mcgill.ca:50000/cs421";
+        String your_userid = "cs421g229";
+        String your_password = "ilovesql1!";
+
+        Connection con = DriverManager.getConnection(url, your_userid, your_password);
+        Statement statement = con.createStatement();
+
+
+
+
+        try {
+            String querySQL = "GETDATE()";
+
+            java.sql.ResultSet rs = statement.executeQuery(querySQL);
+            while (rs.next()) {
+                Date date = rs.getDate(1);
+                System.out.println(date);
+            }
+        }
+        catch (SQLException e)
+        {
+            sqlCode = e.getErrorCode(); // Get SQLCODE
+            sqlState = e.getSQLState(); // Get SQLSTATE
+
+            // Your code to handle errors comes here;
+            // something more meaningful than a print would be good
+            System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
+            System.out.println(e);
+        }
+
+
+
         statement.close ( ) ;
         con.close ( ) ;
+
     }
     public static String chooseCountry(){
         String country = "";
