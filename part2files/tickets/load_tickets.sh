@@ -1,4 +1,4 @@
-#!/bin/bash
+f
 echo "
 INSERT INTO tickets(tid,section,row,seat,listed_price,gname)
  VALUES" > load_tickets.sql

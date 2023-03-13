@@ -51,7 +51,7 @@ CREATE TABLE Stadiums
 	capacity INT NOT NULL);
 
 CREATE TABLE Games
-	(id INT NOT NULL PRIMARY KEY, /* this is an int right? - H */
+	(id INT NOT NULL PRIMARY KEY,
 	date DATE NOT NULL,
 	time TIME NOT NULL, 
 	length TIME NOT NULL,
@@ -115,22 +115,6 @@ CREATE TABLE Billing_addresses
 	FOREIGN KEY (email) REFERENCES Customers);
 
 
-CREATE TABLE Stadium_addresses
-(aid BIGINT NOT NULL PRIMARY KEY,
- address VARCHAR(50) NOT NULL,
- city VARCHAR(30) NOT NULL,
- province VARCHAR(30) NOT NULL,
- country VARCHAR(60) NOT NULL);
-
-
-CREATE TABLE Games_P2
-(gname VARCHAR(40) NOT NULL PRIMARY KEY,
- date DATE NOT NULL,
- time VARCHAR (10) NOT NULL,
- aid BIGINT NOT NULL,
- FOREIGN KEY (aid) REFERENCES Stadium_addresses);
-
-
 CREATE TABLE Credit_cards
 (
     c_num BIGINT NOT NULL PRIMARY KEY,
@@ -148,8 +132,8 @@ CREATE TABLE Tickets
  row INT NOT NULL,
  seat INT NOT NULL,
  listed_price INT NOT NULL,
- gname VARCHAR(40) NOT NULL,
- FOREIGN KEY (gname) REFERENCES Games_P2);
+ gid INT NOT NULL,
+ FOREIGN KEY (gid) REFERENCES Games);
 
 CREATE TABLE Sold_tickets
 (tid BIGINT NOT NULL PRIMARY KEY,
