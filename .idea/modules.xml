@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/part2files/creditcard/creditcard.iml" filepath="$PROJECT_DIR$/part2files/creditcard/creditcard.iml" />
+      <module fileurl="file://$PROJECT_DIR$/p2.iml" filepath="$PROJECT_DIR$/p2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/par1files/par1files.iml" filepath="$PROJECT_DIR$/par1files/par1files.iml" />
+      <module fileurl="file://$PROJECT_DIR$/part2files/part2files.iml" filepath="$PROJECT_DIR$/part2files/part2files.iml" />
+      <module fileurl="file://$PROJECT_DIR$/project3/project3.iml" filepath="$PROJECT_DIR$/project3/project3.iml" />
+      <module fileurl="file://$PROJECT_DIR$/queries/queries.iml" filepath="$PROJECT_DIR$/queries/queries.iml" />
+    </modules>
+  </component>
+</project>

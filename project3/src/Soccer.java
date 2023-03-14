@@ -116,8 +116,6 @@ public class Soccer {
             sqlCode = e1.getErrorCode(); // Get SQLCODE
             sqlState = e1.getSQLState(); // Get SQLSTATE
 
-            // Your code to handle errors comes here;
-            // something more meaningful than a print would be good
             System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
             System.out.println(e1);
         }
@@ -209,7 +207,7 @@ public class Soccer {
             String query1 = "SELECT current_date FROM Games";
 
             //to harrison: dont know how to do the 3 day window
-            String querySQL = "SELECT id,playing_country, opposing_country,date,round FROM Games WHERE date > current_date  ";
+            String querySQL = "SELECT id,playing_country, opposing_country,date,round FROM Games WHERE date > current_date AND date < \'2023-03-17\' ";
 
             java.sql.ResultSet rs = statement.executeQuery(querySQL);
             while (rs.next()) {
