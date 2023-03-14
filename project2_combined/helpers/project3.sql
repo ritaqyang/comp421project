@@ -40,4 +40,4 @@ WHERE position ='test centre position';
 
 
 
-DELETE FROM Performs WHERE position = 'test centre position';
+DELETE FROM Performs WHERE position = 'test centre left';

@@ -64,6 +64,10 @@ public class Soccer {
         else if (userchoice == 2){
             Q2();
         }
+        else if (userchoice == 4){
+            System.out.println("You've successfully exited the application.");
+
+        }
     }
 
 
@@ -130,11 +134,7 @@ public class Soccer {
             loop(choice, statement);
         }
 
-
     }
-
-
-
 
     //Q2
     //main function body for Q2, gets ID + country for the following PrintPlayers function
@@ -182,14 +182,17 @@ public class Soccer {
         country +=chooseCountry();
         country += "\'";
 
-
         printPlayers(matchID,country);
 
         statement.close ( ) ;
         con.close ( ) ;
 
+
+
     }
     public static void printPlayers(int id,String country) throws SQLException {
+
+
 
         String url = "jdbc:db2://winter2023-comp421.cs.mcgill.ca:50000/cs421";
         String your_userid = "cs421g229";
@@ -205,12 +208,14 @@ public class Soccer {
         int sqlCode = 0;      // Variable to hold SQLCODE
         String sqlState = "00000";  // Variable to hold SQLSTATE
 
+        int player_count = 0; //to check if we reached max three players per country per game
+
         try {
             String query = "SELECT shirt_num, position FROM Performs WHERE country =" + country + "AND id =" + id;
             java.sql.ResultSet rs = statement.executeQuery(query);
 
             while (rs.next()) {
-
+                player_count+=1;
                 int shirt_num = rs.getInt(1);
                 String postiion = rs.getString(2);
 
@@ -229,56 +234,31 @@ public class Soccer {
             System.out.println("error in first insert player  function, gameid is " + id);
         }
 
-        System.out.println("Possible palyers from " + country + "not yet selected");
-        int[] numbers = new int[10];
-        int index = 0;
-        try {
-            String query2 = "SELECT shirt_num, position FROM  Players WHERE country =" + country + "AND shirt_num NOT IN (SELECT shirt_num FROM Performs WHERE id = " + id+")";
-            java.sql.ResultSet rs2 = statement.executeQuery(query2);
-
-            while (rs2.next()) {
-                index +=1;
-                int shirt_num = rs2.getInt(1);
-                numbers[index] = shirt_num; //add player numbers to the array
-                String postiion = rs2.getString(2);
-
-                System.out.println(index + ". " + getPlayerName(shirt_num,country) + "  " + shirt_num + "  " + postiion);
-
-            }
+        if (player_count >= 3){
+            System.out.println("You already exceeded 3-player insertion limit");
+            //return to main menu
+            int userchoice = showMenu();
+            loop(userchoice,statement);
         }
-        catch (SQLException e1) {
-            sqlCode = e1.getErrorCode(); // Get SQLCODE
-            sqlState = e1.getSQLState(); // Get SQLSTATE
+        else {
 
-            // Your code to handle errors comes here;
-            // something more meaningful than a print would be good
-            System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
-            System.out.println(e1);
-            System.out.println("error in second insert player  function, gameid is " +id);
-        }
+            System.out.println("Possible palyers from " + country + "not yet selected");
+            int[] numbers = new int[10];
+            int index = 0;
+            try {
+                String query2 = "SELECT shirt_num, position FROM  Players WHERE country =" + country + "AND shirt_num NOT IN (SELECT shirt_num FROM Performs WHERE id = " + id + ")";
+                java.sql.ResultSet rs2 = statement.executeQuery(query2);
 
-        String answer = Q2askforPlayer();
-        //if choose to go back to the previous menu
-        if (answer.equals("P")){
-            Q2();
-        }
-        else{
-            //ask user to enter player position
-            int num = Integer.valueOf(answer);
-            System.out.println("please enter play position for your chosen player number: " + num);
-            String answer2 = "\'";
-            Scanner keyboard = new Scanner(System.in);
-            answer2 += keyboard.nextLine();
-            answer2 += "\'";
+                while (rs2.next()) {
+                    index += 1;
+                    int shirt_num = rs2.getInt(1);
+                    numbers[index] = shirt_num; //add player numbers to the array
+                    String postiion = rs2.getString(2);
 
-            //now enter the new info to the performs table
-            try{
-                String update = "INSERT INTO Performs(country, shirt_num, id, etime,position, Rcard,Ycard) " +
-                        "VALUES (" + country + "," + numbers[num] + ","+ id +",'00:00:00'," + answer2 + ", 0, 0)";
-                System.out.println(update);
-                statement.executeUpdate(update);
-            }
-            catch (SQLException e1) {
+                    System.out.println(index + ". " + getPlayerName(shirt_num, country) + "  " + shirt_num + "  " + postiion);
+
+                }
+            } catch (SQLException e1) {
                 sqlCode = e1.getErrorCode(); // Get SQLCODE
                 sqlState = e1.getSQLState(); // Get SQLSTATE
 
@@ -286,12 +266,43 @@ public class Soccer {
                 // something more meaningful than a print would be good
                 System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
                 System.out.println(e1);
-                System.out.println("error in third update part insert player function, gameid is " +id);
+                System.out.println("error in second insert player  function, gameid is " + id);
             }
 
+            String answer = Q2askforPlayer();
 
+            if (answer.equals("P")) {
+                Q2();   //if choose to go back to the previous menu
+            } else {
 
+                //ask user to enter player position
+                int num = Integer.valueOf(answer);
+                System.out.println("please enter play position for your chosen player number: " + num);
+                String answer2 = "\'";
+                Scanner keyboard = new Scanner(System.in);
+                answer2 += keyboard.nextLine();
+                answer2 += "\'";
+
+                //now enter the new info to the performs table
+                try {
+                    String update = "INSERT INTO Performs(country, shirt_num, id, etime,position, Rcard,Ycard) " +
+                            "VALUES (" + country + "," + numbers[num] + "," + id + ",'00:00:00'," + answer2 + ", 0, 0)";
+                    System.out.println(update);
+                    statement.executeUpdate(update);
+                } catch (SQLException e1) {
+                    sqlCode = e1.getErrorCode(); // Get SQLCODE
+                    sqlState = e1.getSQLState(); // Get SQLSTATE
+
+                    // Your code to handle errors comes here;
+                    // something more meaningful than a print would be good
+                    System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
+                    System.out.println(e1);
+                    System.out.println("error in third update part insert player function, gameid is " + id);
+                }
+                Q2();
+            }
         }
+
 
         statement.close ( ) ;
         con.close ( ) ;
@@ -300,19 +311,20 @@ public class Soccer {
 
 
  //menu options /returning to menus
- public static int showMenu() {
+   public static int showMenu() {
 
      int option = 0;
-     Scanner keyboard = new Scanner(System.in);
+
      System.out.println("Soccer Main Menu:");
      System.out.println("----------------------");
      System.out.println("1.List information of matches of a country");
      System.out.println("2.Insert initial Player information for a match ");
-     System.out.println("3.for you to design ");
+     System.out.println("3.option3 ");
      System.out.println("4.Exit the application");
 
      System.out.println("--------------");
      System.out.println("Enter your choice:");
+       Scanner keyboard = new Scanner(System.in);
      option = keyboard.nextInt();
 
      return option;
@@ -324,9 +336,6 @@ public class Soccer {
      answer += keyboard.next();
      return answer;
  }
-
-
-
 
     //scanning functions for user input
     public static String chooseCountry(){
