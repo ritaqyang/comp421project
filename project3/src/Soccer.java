@@ -324,7 +324,7 @@ public class Soccer {
         return numtickets;
     }
 
-    public static String  getPlayerName(int shirt_num, String country) throws SQLException {
+    public static String getPlayerName(int shirt_num, String country) throws SQLException {
 
         String url = "jdbc:db2://winter2023-comp421.cs.mcgill.ca:50000/cs421";
         String your_userid = "cs421g229";
@@ -431,10 +431,24 @@ public class Soccer {
             System.out.println("error in second insert player  function, gameid is " +id);
         }
 
+       int shirt_num = Q2askforPlayer();
+
+
 
         statement.close ( ) ;
         con.close ( ) ;
 
     }
+    public static int Q2askforPlayer(){
+        String answer = "";
+        int num = -2;
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Enter number of the player you want to insert, [P] to go to the previous menu");
+        answer += keyboard.next();
+        num = keyboard.nextInt();
+        return num;
+    }
+
+
 
     }
