@@ -33,4 +33,11 @@ UNION;
 SELECT DATEDIFF(HOUR,CONVERT(datetime,G2.date),current_timestamp ) AS diff
 FROM Games G2;
 
+INSERT INTO Performs (country, shirt_num, id, etime,position, Rcard,Ycard) VALUES ('Portugal',30,5,'00:00:00','test centre position', 0, 0);
+SELECT *
+FROM Performs
+WHERE position ='test centre position';
 
+
+
+DELETE FROM Performs WHERE position = 'test centre position';

@@ -406,7 +406,7 @@ public class Soccer {
         }
 
         System.out.println("Possible palyers from " + country + "not yet selected");
-
+        int[] numbers = new int[10];
         int index = 0;
         try {
             String query2 = "SELECT shirt_num, position FROM  Players WHERE country =" + country + "AND shirt_num NOT IN (SELECT shirt_num FROM Performs WHERE id = " + id+")";
@@ -415,6 +415,7 @@ public class Soccer {
             while (rs2.next()) {
                 index +=1;
                 int shirt_num = rs2.getInt(1);
+                numbers[index] = shirt_num; //add player numbers to the array
                 String postiion = rs2.getString(2);
 
                 System.out.println(index + ". " + getPlayerName(shirt_num,country) + "  " + shirt_num + "  " + postiion);
@@ -432,30 +433,56 @@ public class Soccer {
             System.out.println("error in second insert player  function, gameid is " +id);
         }
 
-        int num = Q2askforPlayer();
-        if (num == -1){
+        String answer = Q2askforPlayer();
+        //if choose to go back to main menu
+        if (answer.equals("P")){
             int choice = showMenu();
             loop(choice, statement);
+        }
+        else{
+            //ask user to enter player position
+            int num = Integer.valueOf(answer);
+            System.out.println("please enter play position for your chosen player number: " + num);
+            String answer2 = "\'";
+            Scanner keyboard = new Scanner(System.in);
+            answer2 += keyboard.nextLine();
+            answer2 += "\'";
+
+            //now enter the new info to the performs table
+            try{
+                String update = "INSERT INTO Performs(country, shirt_num, id, etime,position, Rcard,Ycard) " +
+                        "VALUES (" + country + "," + numbers[num] + ","+ id +",'00:00:00'," + answer2 + ", 0, 0)";
+                System.out.println(update);
+                statement.executeUpdate(update);
+            }
+            catch (SQLException e1) {
+                sqlCode = e1.getErrorCode(); // Get SQLCODE
+                sqlState = e1.getSQLState(); // Get SQLSTATE
+
+                // Your code to handle errors comes here;
+                // something more meaningful than a print would be good
+                System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
+                System.out.println(e1);
+                System.out.println("error in third update part insert player function, gameid is " +id);
+            }
+
+
+
         }
 
         statement.close ( ) ;
         con.close ( ) ;
 
     }
-    public static int Q2askforPlayer(){
+    public static String Q2askforPlayer(){
         String answer = "";
-        int num = -1;
+
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter number of the player you want to insert, [P] to go to the previous menu");
         answer += keyboard.next();
 
-        if (answer.equals("P")){
-            return -1;
-        }
-        else{
-            num = keyboard.nextInt();
-            return num;
-        }
+
+        return answer;
     }
 
 
