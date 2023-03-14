@@ -407,16 +407,17 @@ public class Soccer {
 
         System.out.println("Possible palyers from " + country + "not yet selected");
 
+        int index = 0;
         try {
             String query2 = "SELECT shirt_num, position FROM  Players WHERE country =" + country + "AND shirt_num NOT IN (SELECT shirt_num FROM Performs WHERE id = " + id+")";
             java.sql.ResultSet rs2 = statement.executeQuery(query2);
 
             while (rs2.next()) {
-
+                index +=1;
                 int shirt_num = rs2.getInt(1);
                 String postiion = rs2.getString(2);
 
-                System.out.println(getPlayerName(shirt_num,country) + "  " + shirt_num + "  " + postiion);
+                System.out.println(index + ". " + getPlayerName(shirt_num,country) + "  " + shirt_num + "  " + postiion);
 
             }
         }
@@ -431,9 +432,11 @@ public class Soccer {
             System.out.println("error in second insert player  function, gameid is " +id);
         }
 
-       int shirt_num = Q2askforPlayer();
-
-
+        int num = Q2askforPlayer();
+        if (num == -1){
+            int choice = showMenu();
+            loop(choice, statement);
+        }
 
         statement.close ( ) ;
         con.close ( ) ;
@@ -441,12 +444,18 @@ public class Soccer {
     }
     public static int Q2askforPlayer(){
         String answer = "";
-        int num = -2;
+        int num = -1;
         Scanner keyboard = new Scanner(System.in);
         System.out.println("Enter number of the player you want to insert, [P] to go to the previous menu");
         answer += keyboard.next();
-        num = keyboard.nextInt();
-        return num;
+
+        if (answer.equals("P")){
+            return -1;
+        }
+        else{
+            num = keyboard.nextInt();
+            return num;
+        }
     }
 
 
