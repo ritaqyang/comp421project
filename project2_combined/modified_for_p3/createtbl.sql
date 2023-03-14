@@ -80,7 +80,7 @@ CREATE TABLE Performs
     	shirt_num INTEGER NOT NULL,
 	id INT NOT NULL,
 	etime TIME NOT NULL,
-	ltime TIME NOT NULL,
+	ltime TIME,
 	position VARCHAR(50) NOT NULL,
 	Rcard INT NOT NULL,
 	Ycard INT NOT NULL,

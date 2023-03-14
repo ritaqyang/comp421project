@@ -194,7 +194,6 @@ public class Soccer {
 
     }
 
-
     public static void Q2() throws SQLException {
 
         int sqlCode = 0;      // Variable to hold SQLCODE
@@ -206,16 +205,21 @@ public class Soccer {
         Connection con = DriverManager.getConnection(url, your_userid, your_password);
         Statement statement = con.createStatement();
 
-
-
-
         try {
-            String querySQL = "GETDATE()";
+            String query1 = "SELECT current_date FROM Games";
+
+            //to harrison: dont know how to do the 3 day window
+            String querySQL = "SELECT id,playing_country, opposing_country,date,round FROM Games WHERE date > current_date  ";
 
             java.sql.ResultSet rs = statement.executeQuery(querySQL);
             while (rs.next()) {
-                Date date = rs.getDate(1);
-                System.out.println(date);
+                int id = rs. getInt(1);
+                String country1 = rs.getString(2);
+                String country2 = rs.getString(3);
+                Date date  = rs. getDate(4);
+                int round = rs.getInt(5);
+                System.out.println(id + "   " + country1 + "  " + country2 + "    " + date + "    " + getRound(round));
+
             }
         }
         catch (SQLException e)
@@ -229,7 +233,11 @@ public class Soccer {
             System.out.println(e);
         }
 
-
+        int matchID = getMatchIDQ2();
+        String country = "\'";
+        country +=chooseCountry();
+        country += "\'";
+        printPlayers(matchID,country);
 
         statement.close ( ) ;
         con.close ( ) ;
@@ -250,6 +258,14 @@ public class Soccer {
         System.out.println("Enter [A] to find matches of another country, [P] to go to the previous menu");
         answer += keyboard.next();
         return answer;
+    }
+
+    public static int getMatchIDQ2(){
+        int matchid = 0;
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Enter the match id: ");
+        matchid = keyboard.nextInt();
+        return matchid;
     }
 
     public static String getRound(int r){
@@ -301,13 +317,126 @@ public class Soccer {
             // something more meaningful than a print would be good
             System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
             System.out.println(e1);
-            System.out.println("error in getNumTickets function, gameid is " + gameID);
+            System.out.println("error in insert play function, gameid is " + gameID);
         }
 
         statement.close ( ) ;
         con.close ( ) ;
 
         return numtickets;
+    }
+
+    public static String  getPlayerName(int shirt_num, String country) throws SQLException {
+
+        String url = "jdbc:db2://winter2023-comp421.cs.mcgill.ca:50000/cs421";
+        String your_userid = "cs421g229";
+        String your_password = "ilovesql1!";
+
+
+        Connection con = DriverManager.getConnection(url, your_userid, your_password);
+        Statement statement = con.createStatement();
+
+
+        int sqlCode = 0;      // Variable to hold SQLCODE
+        String sqlState = "00000";  // Variable to hold SQLSTATE
+        String pname = "";
+
+        try {
+            String query = "SELECT pname FROM Players WHERE country = " + country + "AND shirt_num = " + shirt_num;
+            java.sql.ResultSet rs = statement.executeQuery(query);
+
+            while (rs.next()) {
+               pname += rs.getString(1);
+
+            }
+        }
+        catch (SQLException e1) {
+            sqlCode = e1.getErrorCode(); // Get SQLCODE
+            sqlState = e1.getSQLState(); // Get SQLSTATE
+
+            // Your code to handle errors comes here;
+            // something more meaningful than a print would be good
+            System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
+            System.out.println(e1);
+            System.out.println("error in getPlayerName function");
+        }
+
+        statement.close ( ) ;
+        con.close ( ) ;
+
+        return pname;
+    }
+
+    public static void printPlayers(int id,String country) throws SQLException {
+
+        String url = "jdbc:db2://winter2023-comp421.cs.mcgill.ca:50000/cs421";
+        String your_userid = "cs421g229";
+        String your_password = "ilovesql1!";
+
+
+        Connection con = DriverManager.getConnection(url, your_userid, your_password);
+        Statement statement = con.createStatement();
+
+        System.out.println("The following players are already entered for match "+ id);
+
+
+        int sqlCode = 0;      // Variable to hold SQLCODE
+        String sqlState = "00000";  // Variable to hold SQLSTATE
+
+        try {
+            String query = "SELECT shirt_num, position FROM Performs WHERE country =" + country + "AND id =" + id;
+            java.sql.ResultSet rs = statement.executeQuery(query);
+
+            while (rs.next()) {
+
+                int shirt_num = rs.getInt(1);
+                String postiion = rs.getString(2);
+
+                System.out.println(getPlayerName(shirt_num,country) + "  " + shirt_num + "  " + postiion + "   from minute 0   to minute NULL yellow: 0 red: 0");
+
+            }
+        }
+        catch (SQLException e1) {
+            sqlCode = e1.getErrorCode(); // Get SQLCODE
+            sqlState = e1.getSQLState(); // Get SQLSTATE
+
+            // Your code to handle errors comes here;
+            // something more meaningful than a print would be good
+            System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
+            System.out.println(e1);
+            System.out.println("error in first insert player  function, gameid is " + id);
+        }
+
+        System.out.println("Possible palyers from " + country + "not yet selected");
+
+        try {
+            String query2 = "SELECT shirt_num, position FROM  Players WHERE country =" + country + "AND shirt_num NOT IN (SELECT shirt_num FROM Performs WHERE id = " + id+")";
+            java.sql.ResultSet rs2 = statement.executeQuery(query2);
+
+            while (rs2.next()) {
+
+                int shirt_num = rs2.getInt(1);
+                String postiion = rs2.getString(2);
+
+                System.out.println(getPlayerName(shirt_num,country) + "  " + shirt_num + "  " + postiion);
+
+            }
+        }
+        catch (SQLException e1) {
+            sqlCode = e1.getErrorCode(); // Get SQLCODE
+            sqlState = e1.getSQLState(); // Get SQLSTATE
+
+            // Your code to handle errors comes here;
+            // something more meaningful than a print would be good
+            System.out.println("Code: " + sqlCode + "  sqlState: " + sqlState);
+            System.out.println(e1);
+            System.out.println("error in second insert player  function, gameid is " +id);
+        }
+
+
+        statement.close ( ) ;
+        con.close ( ) ;
+
     }
 
     }
